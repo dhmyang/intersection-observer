@@ -2,15 +2,14 @@ let AllLinks = document.querySelectorAll('nav a');
 let sections = document.querySelectorAll('section');
 
 const opties = {
-    rootMargin: '-150px',
     treshold: 1.0
 };
 
 const editcut = (entries, observer) => {
     entries.forEach(entry => {
-        // console.log(entry.target.id + " doorsnijdt " + entry.isIntersecting);
+        console.log(entry.target.parentNode.id + " doorsnijdt " + entry.isIntersecting);
         if (entry.isIntersecting) {
-            let link = SearchLink('#' + entry.target.id);
+            let link = SearchLink('#' + entry.target.parentNode.id);
             maakActief(link);
         }
     })
@@ -20,7 +19,7 @@ let observer = new IntersectionObserver(editcut, opties);
 
 // observer.observe(sections[1]);
 sections.forEach( section => {
-    observer.observe(section);
+    observer.observe(section.getElementsByTagName('p')[0]);
 });
 
 // Functies die de class actief verwijderd
