@@ -1,7 +1,11 @@
 let AllLinks = document.querySelectorAll('nav a');
 let sections = document.querySelectorAll('section');
 
-const opties = {};
+const opties = {
+    rootMargin: '-150px',
+    treshold: 1.0
+};
+
 const editcut = (entries, observer) => {
     entries.forEach(entry => {
         // console.log(entry.target.id + " doorsnijdt " + entry.isIntersecting);
@@ -14,7 +18,10 @@ const editcut = (entries, observer) => {
 
 let observer = new IntersectionObserver(editcut, opties);
 
-observer.observe(sections[1]);
+// observer.observe(sections[1]);
+sections.forEach( section => {
+    observer.observe(section);
+});
 
 // Functies die de class actief verwijderd
 const verwijderActief = () => {
